@@ -8,7 +8,7 @@ PROG=temporal-bench
 mkdir -p ./dist
 
 if [ ! -d ./src ]; then
-    git clone -b $VERSION --single-branch $REPO src 
+    git clone $REPO src 
     cd src 
     echo "Checkout tag $VERSION" 
     if [ "$VERSION" != "main" ] && [ ! -z "$VERSION" ] ; then git checkout tags/${VERSION} -b ${VERSION} ; fi

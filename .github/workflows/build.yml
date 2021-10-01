@@ -47,7 +47,6 @@ jobs:
     - name: Run build script
       run: |
        ./build.sh
-       ./dockerize.sh
         
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
