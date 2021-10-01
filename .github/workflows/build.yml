@@ -26,7 +26,7 @@ jobs:
 
     - uses: actions/setup-go@v2
       with:
-        go-version: ^1.16.0
+        go-version: ^1.17.0
 
     - name: Prepare 
       if: success()
@@ -35,7 +35,7 @@ jobs:
         VERSION=$(cat version.txt)
         echo ::set-output name=version::${VERSION}
         echo ::set-output name=docker_platforms::linux/amd64,linux/arm64,linux/ppc64le,linux/s390x
-        echo ::set-output name=image::docker.io/${{ secrets.DOCKER_USERNAME }}/temporalio-server
+        echo ::set-output name=image::docker.io/${{ secrets.DOCKER_USERNAME }}/temporalio-maru-worker
         echo ::set-output name=hash::${GITHUB_SHA}
         echo ::set-output name=pre-release::false
 
@@ -60,7 +60,7 @@ jobs:
       if: success()
       run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
-    - name: Build server image
+    - name: Build image
       run: |
         TAG=$(echo "${{ steps.prepare.outputs.version }}" | sed -e 's/^v//' | sed -e 's/-.*$//')
         docker buildx build \
