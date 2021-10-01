@@ -1,1 +1,1 @@
-# temporalio-server-docker
+# temporalio-maru-worker-docker
